@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { servicesData } from "../data/servicesData";
-import { Calendar, Clock, User, Phone, Mail, Scissors, Sparkles, Heart, Star, X } from "lucide-react";
+import { Calendar, Clock, User, Phone, Mail, Scissors, Sparkles, Heart, Star, X, Loader2 } from "lucide-react";
 import { useTranslation } from "../contexts/TranslationContext";
 
 interface BookingFormData {
@@ -26,6 +26,8 @@ const BookingPage: React.FC = () => {
   });
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); // ✅ loading state
+
 
   const handleServiceToggle = (service: any) => {
     setFormData((prev) => {
@@ -44,6 +46,7 @@ const BookingPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // ✅ set loading state
   
     const bookingData = {
       ...formData,
@@ -59,7 +62,7 @@ const BookingPage: React.FC = () => {
     } catch (error) {
       console.error('Error saving booking locally:', error);
     }
-  
+    setLoading(false); // ✅ reset loading state
     console.log("Booking Data (local):", bookingData);
   
     // Send to backend
@@ -84,6 +87,7 @@ const BookingPage: React.FC = () => {
       console.error('Error sending booking to backend:', error);
       alert('Failed to submit booking to server.');
     }
+    setLoading(false); // ✅ reset loading state
   };
   
 
@@ -341,12 +345,19 @@ const BookingPage: React.FC = () => {
                 </div>
 
                 <button
-                  type="submit"
-                  disabled={formData.selectedServices.length === 0}
-                  className="w-full py-3 sm:py-4 bg-gradient-to-r from-[#9929EA] to-[#CC66DA] text-white rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transition-all duration-300"
-                >
-                  {t('confirmBooking')}
-                </button>
+        type="submit"
+        disabled={formData.selectedServices.length === 0 || loading}
+        className="w-full py-3 sm:py-4 bg-gradient-to-r from-[#9929EA] to-[#CC66DA] text-white rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transition-all duration-300 flex items-center justify-center gap-2"
+      >
+        {loading ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" /> {/* spinner */}
+            {t("processing")}
+          </>
+        ) : (
+          t("confirmBooking")
+        )}
+      </button>
               </form>
             </div>
           </div>

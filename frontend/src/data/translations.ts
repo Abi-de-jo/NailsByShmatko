@@ -23,6 +23,7 @@ export const translations = {
     selectTime: "Select Time",
     confirmBooking: "Confirm Booking",
     variablePricing: "Variable pricing",
+    processing: "Processing...",
 
     // Form Labels
     name: "Name",
@@ -204,6 +205,7 @@ export const translations = {
     selectTime: "Оберіть Час",
     confirmBooking: "Підтвердити Бронювання",
     variablePricing: "Змінна ціна",
+    processing: "Обробка",
 
     // Form Labels
     name: "Ім'я",
