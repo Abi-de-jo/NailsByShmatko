@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 
 const app = express();
 const prisma = new PrismaClient();
-const PORT = 3000;
+// const PORT = 3000;
 const JWT_SECRET = "your_super_secret_key";
 
 // ------------------ MIDDLEWARE ------------------
