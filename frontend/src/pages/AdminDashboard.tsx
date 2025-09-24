@@ -18,7 +18,7 @@ interface Booking {
   status: "upcoming" | "completed" | "cancelled";
 }
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://nails-by-shmatko.vercel.app";
 
 const AdminDashboard: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);

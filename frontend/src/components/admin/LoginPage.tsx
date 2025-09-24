@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState('');
 
-  const API_BASE = 'http://localhost:3000';
+  const API_BASE = 'https://nails-by-shmatko.vercel.app';
 
   const handleSubmit = async (e: React.FormEvent) => {  
     e.preventDefault();

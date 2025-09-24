@@ -123,7 +123,7 @@ const ProfilePage: React.FC = () => {
     setError("");
   
     try {
-      const response = await fetch(`http://localhost:3000/bookings/user/${contact}`);
+      const response = await fetch(`https://nails-by-shmatko.vercel.app/bookings/user/${contact}`);
   
       if (!response.ok) throw new Error(`Failed to fetch bookings: ${response.status}`);
   
@@ -178,7 +178,7 @@ const ProfilePage: React.FC = () => {
     );
     
     try {
-      const response = await fetch(`http://localhost:3000/bookings/${bookingId}/status`, {
+      const response = await fetch(`https://nails-by-shmatko.vercel.app/bookings/${bookingId}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "cancelled" }),
@@ -218,7 +218,7 @@ const ProfilePage: React.FC = () => {
     setEditingBooking(null);
     
     try {
-      const response = await fetch(`http://localhost:3000/bookings/${bookingId}/reschedule`, {
+      const response = await fetch(`https://nails-by-shmatko.vercel.app/bookings/${bookingId}/reschedule`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
