@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL") // your MongoDB URI
+}
+
+model Booking {
+  id               String   @id @map("_id") @default(auto()) @db.ObjectId
+  name             String
+  contact          String
+  email            String?
+  selectedServices Json
+  date             String
+  time             String
+  status           String   @default("upcoming") 
+  userId           String
+ }
+
+
+model Admin {
+  id       String @id @map("_id") @default(auto()) @db.ObjectId
+  username String @unique
+  password String
+}

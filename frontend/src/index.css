@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+    --text-color: #1c0038;
+    --background-color: #e7e4ff;
+    --primary-color: #000000;
+    --secondary-color: #9929ea;
+    --accent-color: #cc66da;
+    --highlight-color: #faeb92;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+}
+
+/* Optional: Add some custom utility classes */
+.bg-primary { background-color: var(--primary-color); }
+.bg-secondary { background-color: var(--secondary-color); }
+.bg-accent { background-color: var(--accent-color); }
+.bg-highlight { background-color: var(--highlight-color); }
+
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+.text-highlight { color: var(--highlight-color); }
+
+
+/* Services Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+[data-aos="fade-up"] {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+[data-aos="zoom-in"] {
+  animation: zoomIn 0.6s ease-out;
+}
+
+/* Hover effects */
+.service-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
