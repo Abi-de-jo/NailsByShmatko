@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-
+import { translations } from '../data/translations';
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -9,53 +9,53 @@ const Testimonials: React.FC = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sophia Rodriguez",
-      role: "Regular Client",
+      name: translations.uk.client1Name,
+      role: translations.uk.client1Role,
       rating: 5,
-      text: "The best nail salon I've ever visited! The attention to detail is incredible. My gel manicure lasted over 3 weeks without a single chip. Absolutely worth every penny!",
+      text: translations.uk.client1Text,
       image: "/testimonials/sophia.jpg",
-      service: "Gel Manicure",
-      duration: "Client for 2 years"
+      service: translations.uk.client1Service,
+      duration: translations.uk.client1Duration
     },
     {
       id: 2,
-      name: "Emily Chen",
-      role: "Bride-to-be",
+      name: translations.uk.client2Name,
+      role: translations.uk.client2Role,
       rating: 5,
-      text: "I had my bridal nails done here and they were absolutely stunning! The team listened to my vision and executed it perfectly. So many compliments on my wedding day!",
+      text: translations.uk.client2Text,
       image: "/testimonials/emily.jpg",
-      service: "Bridal Package",
-      duration: "One-time service"
+      service: translations.uk.client2Service,
+      duration: translations.uk.client2Duration
     },
     {
       id: 3,
-      name: "Jessica Williams",
-      role: "Business Owner",
+      name: translations.uk.client3Name,
+      role: translations.uk.client3Role,
       rating: 5,
-      text: "As a busy entrepreneur, I need my nails to look professional and last. This place never disappoints. The quality and service are consistently excellent.",
+      text: translations.uk.client3Text,
       image: "/testimonials/jessica.jpg",
-      service: "Dip Powder",
-      duration: "Monthly client"
+      service: translations.uk.client3Service,
+      duration: translations.uk.client3Duration
     },
     {
       id: 4,
-      name: "Mia Thompson",
-      role: "Fashion Blogger",
+      name: translations.uk.client4Name,
+      role: translations.uk.client4Role,
       rating: 5,
-      text: "I've tried countless nail salons, but none compare to the artistry here. The designs are always trendy and the technicians are true artists!",
+      text: translations.uk.client4Text,
       image: "/testimonials/mia.jpg",
-      service: "Nail Art Design",
-      duration: "Client for 1 year"
+      service: translations.uk.client4Service,
+      duration: translations.uk.client4Duration
     },
     {
       id: 5,
-      name: "Olivia Martinez",
-      role: "Model",
+      name: translations.uk.client5Name,
+      role: translations.uk.client5Role,
       rating: 5,
-      text: "Perfect nails every single time! The hygiene standards are impeccable and the staff makes you feel like royalty. My go-to place for photoshoots!",
+      text: translations.uk.client5Text,
       image: "/testimonials/olivia.jpg",
-      service: "Luxury Manicure",
-      duration: "Professional client"
+      service: translations.uk.client5Service,
+      duration: translations.uk.client5Duration
     }
   ];
 
@@ -116,10 +116,10 @@ const Testimonials: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1c0038] mb-4">
-            Loved by Clients
+            {translations.uk.testimonialsTitle}
           </h2>
           <p className="text-xl text-[#CC66DA] max-w-2xl mx-auto">
-            Discover why our clients keep coming back for exceptional nail care experiences
+            {translations.uk.testimonialsDescription}
           </p>
         </div>
 
@@ -150,7 +150,7 @@ const Testimonials: React.FC = () => {
               
               <div className="flex items-center justify-center gap-4">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#9929EA] to-[#CC66DA] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  {testimonials[currentIndex].name.split(' ').map(n => n[0]).join('')}
+                  {testimonials[currentIndex].name.split(' ').map((n: string) => n[0]).join('')}
                 </div>
                 <div className="text-left">
                   <h4 className="font-bold text-[#1c0038] text-lg">{testimonials[currentIndex].name}</h4>
@@ -192,34 +192,30 @@ const Testimonials: React.FC = () => {
           </div>
         </div>
 
- 
-
         {/* Stats Section */}
         <div className="text-center" data-aos="fade-up" data-aos-delay="400">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-[#9929EA]">500+</div>
-              <div className="text-[#1c0038] font-medium">Happy Clients</div>
+              <div className="text-[#1c0038] font-medium">{translations.uk.happyClients}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-[#CC66DA]">4.9</div>
-              <div className="text-[#1c0038] font-medium">Average Rating</div>
+              <div className="text-[#1c0038] font-medium">{translations.uk.averageRating}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-[#9929EA]">2K+</div>
-              <div className="text-[#1c0038] font-medium">Services Done</div>
+              <div className="text-[#1c0038] font-medium">{translations.uk.servicesDone}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-[#CC66DA]">98%</div>
-              <div className="text-[#1c0038] font-medium">Return Clients</div>
+              <div className="text-[#1c0038] font-medium">{translations.uk.returnClients}</div>
             </div>
           </div>
         </div>
-
- 
       </div>
 
-      <style  >{`
+      <style>{`
         .testimonial-item {
           animation: slideUp 0.6s ease-out;
         }

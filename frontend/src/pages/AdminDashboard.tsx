@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Clock, Calendar, CheckCircle, XCircle } from "lucide-react";
-
+import { translations } from "../data/translations";
+ 
 interface Service {
   name: string;
   price: string;
@@ -61,7 +62,7 @@ const AdminDashboard: React.FC = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString("uk-UA", {
       weekday: "short",
       year: "numeric",
       month: "short",
@@ -69,14 +70,23 @@ const AdminDashboard: React.FC = () => {
     });
   };
 
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case "upcoming": return translations.uk.upcoming;
+      case "completed": return translations.uk.completed;
+      case "cancelled": return translations.uk.cancelled;
+      default: return status;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-4 text-purple-700">Admin Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-4 text-purple-700">{translations.uk.adminDashboard}</h1>
 
       {message && <p className="mb-4 text-green-600 font-medium">{message}</p>}
 
       {bookings.length === 0 ? (
-        <p>No bookings found.</p>
+        <p>{translations.uk.noBookingsFound}</p>
       ) : (
         <div className="space-y-4">
           {bookings.map((booking) => (
@@ -93,11 +103,11 @@ const AdminDashboard: React.FC = () => {
                   booking.status === "upcoming" ? "text-blue-600" :
                   booking.status === "completed" ? "text-green-600" : "text-red-600"
                 }`}>
-                  Status: {booking.status}
+                  {translations.uk.status}: {getStatusText(booking.status)}
                 </p>
 
                 <div className="mt-2">
-                  <p className="font-medium">Services:</p>
+                  <p className="font-medium">{translations.uk.services}:</p>
                   <ul className="list-disc ml-5">
                     {booking.selectedServices.map((s, idx) => (
                       <li key={idx}>{s.name} - {s.price}</li>
@@ -113,13 +123,13 @@ const AdminDashboard: React.FC = () => {
                     onClick={() => updateBookingStatus(booking.id, "accept")}
                     className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600 flex items-center gap-1"
                   >
-                    <CheckCircle className="w-4 h-4" /> service completed
+                    <CheckCircle className="w-4 h-4" /> {translations.uk.serviceCompleted}
                   </button>
                   <button
                     onClick={() => updateBookingStatus(booking.id, "reject")}
                     className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 flex items-center gap-1"
                   >
-                    <XCircle className="w-4 h-4" /> Reject
+                    <XCircle className="w-4 h-4" /> {translations.uk.reject}
                   </button>
                 </div>
               )}

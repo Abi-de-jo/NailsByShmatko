@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { translations } from '../data/translations';
 interface TimeSlotsProps {
   startHour?: number; // default 8 (8 AM)
   endHour?: number;   // default 20 (8 PM)
@@ -13,7 +13,7 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
   endHour = 20,
   gapHours = 2,
   onSelect,
-  serviceDuration = "1 hour"
+  serviceDuration = translations.uk.oneHour
 }) => {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [currentHour, setCurrentHour] = useState<number>(new Date().getHours());
@@ -36,7 +36,7 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
       month: 'short', 
       day: 'numeric' 
     };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString('uk-UA', options);
   };
 
   const generateSlots = () => {
@@ -50,7 +50,7 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
   };
 
   const formatHour = (hour24: number) => {
-    const period = hour24 >= 12 ? "PM" : "AM";
+    const period = hour24 >= 12 ? translations.uk.pm : translations.uk.am;
     const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
     return `${hour12}:00 ${period}`;
   };
@@ -75,14 +75,14 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
       {/* Compact header with date and service info */}
       <div className="flex justify-between items-center mb-6 p-4 bg-[#e7e4ff] rounded-2xl">
         <div>
-          <h2 className="text-2xl font-bold text-[#1c0038]">Pick a time</h2>
+          <h2 className="text-2xl font-bold text-[#1c0038]">{translations.uk.pickTime}</h2>
           <p className="text-[#1c0038]/80 text-sm mt-1">
-            Service duration: <span className="font-semibold text-[#9929EA]">{serviceDuration}</span>
+            {translations.uk.serviceDuration}: <span className="font-semibold text-[#9929EA]">{serviceDuration}</span>
           </p>
         </div>
         <div className="text-right">
           <div className="text-lg font-bold text-[#1c0038]">{formatDate(currentDate)}</div>
-          <div className="text-sm text-[#1c0038]/70">Today</div>
+          <div className="text-sm text-[#1c0038]/70">{translations.uk.today}</div>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
               {/* Current slot indicator */}
               {isCurrentSlot && !isPast && (
                 <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-[#cc66da] text-white text-xs rounded-full font-medium">
-                  Now
+                  {translations.uk.now}
                 </span>
               )}
               
@@ -131,7 +131,7 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
                 <div className={`font-bold ${isPast ? "text-black" : "text-black"}`}>
                   {slot.split(" - ")[0]}
                 </div>
-                <div className="text-xs opacity-60 mt-0.5 text-black">to</div>
+                <div className="text-xs opacity-60 mt-0.5 text-black">{translations.uk.to}</div>
                 <div className={`font-semibold ${isPast ? "text-black" : "text-black"}`}>
                   {slot.split(" - ")[1]}
                 </div>
@@ -140,10 +140,6 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
           );
         })}
       </div>
-
- 
-
-  
     </div>
   );
 };

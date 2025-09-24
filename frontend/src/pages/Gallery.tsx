@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
-
+import { translations } from "../data/translations";
 interface GalleryItem {
   id: number;
   image: string;
@@ -9,23 +9,32 @@ interface GalleryItem {
 }
 
 const galleryData: GalleryItem[] = [
-  { id: 1, image: "/nail1.jpg", title: "Luxury French Manicure", category: "Classic" },
-  { id: 2, image: "/nail2.jpg", title: "Gel Extension Art", category: "Extensions" },
-  { id: 3, image: "/nail3.jpg", title: "Abstract Nail Design", category: "Artistic" },
-  { id: 4, image: "/nail4.jpg", title: "Crystal Embellishments", category: "Luxury" },
-  { id: 5, image: "/top.jpg", title: "Gradient Ombre", category: "Color" },
-  { id: 6, image: "/top1.jpg", title: "Seasonal Collection", category: "Seasonal" },
-  { id: 7, image: "/top2.jpg", title: "Minimal Design", category: "Simple" },
-  { id: 8, image: "/top3.jpg", title: "Floral Art", category: "Artistic" },
+  { id: 1, image: "/nail1.jpg", title: translations.uk.luxuryFrenchManicure, category: "classic" },
+  { id: 2, image: "/nail2.jpg", title: translations.uk.gelExtensionArt, category: "extensions" },
+  { id: 3, image: "/nail3.jpg", title: translations.uk.abstractNailDesign, category: "artistic" },
+  { id: 4, image: "/nail4.jpg", title: translations.uk.crystalEmbellishments, category: "luxury" },
+  { id: 5, image: "/top.jpg", title: translations.uk.gradientOmbre, category: "color" },
+  { id: 6, image: "/top1.jpg", title: translations.uk.seasonalCollection, category: "seasonal" },
+  { id: 7, image: "/top2.jpg", title: translations.uk.minimalDesign, category: "simple" },
+  { id: 8, image: "/top3.jpg", title: translations.uk.floralArt, category: "artistic" },
 ];
 
-const categories = ["All", "Classic", "Extensions", "Artistic", "Luxury", "Color", "Seasonal", "Simple"];
+const categories = [
+  { key: "all", label: translations.uk.all },
+  { key: "classic", label: translations.uk.classic },
+  { key: "extensions", label: translations.uk.extensions },
+  { key: "artistic", label: translations.uk.artistic },
+  { key: "luxury", label: translations.uk.luxury },
+  { key: "color", label: translations.uk.color },
+  { key: "seasonal", label: translations.uk.seasonal },
+  { key: "simple", label: translations.uk.simple }
+];
 
 const Gallery: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activeImage, setActiveImage] = useState<GalleryItem | null>(null);
 
-  const filteredGallery = selectedCategory === "All" 
+  const filteredGallery = selectedCategory === "all" 
     ? galleryData 
     : galleryData.filter(item => item.category === selectedCategory);
 
@@ -33,9 +42,9 @@ const Gallery: React.FC = () => {
     <div className="min-h-screen bg-[#fdfaf5] py-16 px-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#1c0038] mb-2">Our Gallery</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-[#1c0038] mb-2">{translations.uk.galleryTitle}</h1>
         <p className="text-[#CC66DA] text-lg md:text-xl max-w-2xl mx-auto">
-          Explore our nail art creations and transformations
+          {translations.uk.galleryDescription}
         </p>
       </div>
 
@@ -43,15 +52,15 @@ const Gallery: React.FC = () => {
       <div className="flex flex-wrap justify-center gap-4 mb-10">
         {categories.map(cat => (
           <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            key={cat.key}
+            onClick={() => setSelectedCategory(cat.key)}
             className={`px-4 py-2 rounded-full font-medium transition-colors ${
-              selectedCategory === cat
+              selectedCategory === cat.key
                 ? "bg-[#9929EA] text-white"
                 : "bg-[#faeb92]/30 text-[#1c0038] hover:bg-[#CC66DA]/30"
             }`}
           >
-            {cat}
+            {cat.label}
           </button>
         ))}
       </div>
@@ -71,7 +80,9 @@ const Gallery: React.FC = () => {
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
               <h3 className="text-white font-semibold text-lg">{item.title}</h3>
-              <p className="text-white/70 text-sm">{item.category}</p>
+              <p className="text-white/70 text-sm">
+                {categories.find(cat => cat.key === item.category)?.label}
+              </p>
             </div>
           </div>
         ))}
@@ -94,7 +105,9 @@ const Gallery: React.FC = () => {
             />
             <div className="mt-4 text-center text-white">
               <h3 className="text-2xl font-bold">{activeImage.title}</h3>
-              <p className="text-sm mt-1">{activeImage.category}</p>
+              <p className="text-sm mt-1">
+                {categories.find(cat => cat.key === activeImage.category)?.label}
+              </p>
             </div>
           </div>
         </div>

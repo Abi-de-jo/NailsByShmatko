@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { servicesData } from '../data/servicesData';
 import { Star, Scissors, Sparkles, Heart, X, Clock, Users, Shield, Award } from 'lucide-react';
-
+import { translations } from '../data/translations';
 const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<any | null>(null);
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
@@ -30,10 +30,10 @@ const Services: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1c0038] mb-4">
-            Our Services
+            {translations.uk.ourServices}
           </h2>
           <p className="text-xl text-[#CC66DA] max-w-3xl mx-auto">
-            Premium nail care services crafted with precision and luxury in mind
+            {translations.uk.servicesDescription}
           </p>
         </div>
 
@@ -108,15 +108,10 @@ const Services: React.FC = () => {
                           {/* Details Preview */}
                           {service.details && (
                             <div className="pt-3 border-t border-gray-100">
-                              {service.details.slice(0, 2).map((detail, idx) => (
-                                <p key={idx} className="text-xs text-gray-500 mb-1 flex items-center">
-                                  <span className="w-1 h-1 bg-[#CC66DA] rounded-full mr-2"></span>
-                                  {detail.length > 60 ? `${detail.substring(0, 60)}...` : detail}
-                                </p>
-                              ))}
+       
                               {service.details.length > 2 && (
                                 <p className="text-xs text-[#9929EA] font-medium mt-2">
-                                  +{service.details.length - 2} more details
+                                  +{service.details.length - 2} {translations.uk.moreDetails}
                                 </p>
                               )}
                             </div>
@@ -128,7 +123,7 @@ const Services: React.FC = () => {
                           {/* Click Hint */}
                           <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="bg-[#9929EA] text-white text-xs px-2 py-1 rounded-full">
-                              Click for details
+                              {translations.uk.clickForDetails}
                             </div>
                           </div>
                         </div>
@@ -146,20 +141,19 @@ const Services: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-6 mb-4">
             <div className="flex items-center gap-2 text-[#1c0038]">
               <Clock className="w-5 h-5 text-[var(--primary-color)]" />
-              <span className="font-semibold">30-90 min sessions</span>
+              <span className="font-semibold">{translations.uk.sessionDuration}</span>
             </div>
             <div className="flex items-center gap-2 text-[#1c0038]">
               <Shield className="w-5 h-5 text-[var(--primary-color)]" />
-              <span className="font-semibold">Quality guaranteed</span>
+              <span className="font-semibold">{translations.uk.qualityGuaranteed}</span>
             </div>
             <div className="flex items-center gap-2 text-[#1c0038]">
               <Award className="w-5 h-5 text-[var(--primary-color)]" />
-              <span className="font-semibold">Professional materials</span>
+              <span className="font-semibold">{translations.uk.professionalMaterials}</span>
             </div>
           </div>
           <p className="text-[#1c0038] text-lg font-medium">
-          b<span className="text-[var(--primary-color)] font-bold">All services include</span> professional consultation, 
-            premium materials, and lasting results that exceed expectations
+            <span className="text-[var(--primary-color)] font-bold">{translations.uk.allServicesInclude}</span> {translations.uk.servicesIncludeDetails}
           </p>
         </div>
       </div>
@@ -189,11 +183,13 @@ const Services: React.FC = () => {
                     <Star className="w-10 h-10 text-white" />
                   )}
                 </div>
+                <div>
+                 </div>
                 <div className="text-center">
                   <div className="bg-gradient-to-r from-[#9929EA] to-[#CC66DA] text-white px-4 py-2 rounded-full font-bold text-lg">
                     {selectedService.price}
                   </div>
-                  <p className="text-sm text-gray-600 mt-2">Approximate duration</p>
+                  <p className="text-sm text-gray-600 mt-2">{translations.uk.approximateDuration}</p>
                 </div>
               </div>
 
@@ -213,21 +209,21 @@ const Services: React.FC = () => {
                 <div className="grid gap-3 mb-6">
                   <div className="flex items-center gap-3 text-[var(--primary-color)]">
                     <Clock className="w-5 h-5 text-[#9929EA]" />
-                    <span className="font-medium">Duration: 30-60 minutes</span>
+                    <span className="font-medium">{translations.uk.duration}: 30-60 {translations.uk.minutes}</span>
                   </div>
                   <div className="flex items-center gap-3 text-[var(--primary-color)]">
                     <Users className="w-5 h-5 text-[#9929EA]" />
-                    <span className="font-medium">Professional consultation included</span>
+                    <span className="font-medium">{translations.uk.professionalConsultationIncluded}</span>
                   </div>
                   <div className="flex items-center gap-3 text-[var(--primary-color)]">
                     <Shield className="w-5 h-5 text-[#9929EA]" />
-                    <span className="font-medium">Quality materials guaranteed</span>
+                    <span className="font-medium">{translations.uk.qualityMaterialsGuaranteed}</span>
                   </div>
                 </div>
 
                 {/* Detailed Description */}
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <h4 className="font-bold text-[#1c0038] mb-3">Service Includes:</h4>
+                <div className="bg-gray-50 rounded-xl p-4"> 
+                  <h4 className="font-bold text-[#1c0038] mb-3">{translations.uk.serviceIncludes}:</h4>
                   <div className="space-y-2">
                     {selectedService.details ? (
                       selectedService.details.map((detail: string, idx: number) => (
@@ -238,8 +234,7 @@ const Services: React.FC = () => {
                       ))
                     ) : (
                       <p className="text-gray-700">
-                        This premium service includes professional consultation, quality materials, 
-                        and expert execution to ensure your complete satisfaction and beautiful results.
+                        {translations.uk.defaultServiceDescription}
                       </p>
                     )}
                   </div>
@@ -247,7 +242,7 @@ const Services: React.FC = () => {
 
                 {/* Action Button */}
                 <button className="w-full mt-6 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] text-white py-3 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                  Book This Service
+                  {translations.uk.bookThisService}
                 </button>
               </div>
             </div>

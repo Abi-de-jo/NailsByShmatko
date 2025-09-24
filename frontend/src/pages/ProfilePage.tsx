@@ -62,7 +62,7 @@ const ProfilePage: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [activeTab, setActiveTab] = useState<"upcoming" | "history">("upcoming");
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
 

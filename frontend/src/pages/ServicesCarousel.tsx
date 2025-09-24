@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Star, Scissors, Sparkles, Heart, X } from "lucide-react";
+import { translations } from "../data/translations";
 
 const ServicesCarousel = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -9,31 +10,31 @@ const ServicesCarousel = () => {
   const servicesData = [
     {
       id: 1,
-      category: "КОМПЛЕКС: МАНІКЮР",
+      category: translations.uk.manicureComplex,
       services: [
-        { name: "Покриття кольоровою базою/гель-лак", price: "650₴", icon: Sparkles },
-        { name: "Укріплення + гель-лак", price: "800₴", icon: Heart },
-        { name: "Нарощення нігтів", price: "1200-1400₴", icon: Scissors },
-        { name: "Корекція нарощення", price: "850-1200₴", icon: Star },
-        { name: "Гігієнічний манікюр", price: "500₴", icon: Sparkles },
+        { name: translations.uk.colorBaseGel, price: "650₴", icon: Sparkles },
+        { name: translations.uk.strengtheningGel, price: "800₴", icon: Heart },
+        { name: translations.uk.nailExtensions, price: "1200-1400₴", icon: Scissors },
+        { name: translations.uk.extensionCorrection, price: "850-1200₴", icon: Star },
+        { name: translations.uk.hygienicManicure, price: "500₴", icon: Sparkles },
       ],
     },
     {
       id: 2,
-      category: "КОМПЛЕКС: ПЕДИКЮР",
+      category: translations.uk.pedicureComplex,
       services: [
-        { name: "Покриття гель-лак + апаратна обробка стопи", price: "750₴", icon: Heart },
-        { name: "Гігієнічний педикюр", price: "550₴", icon: Sparkles },
+        { name: translations.uk.gelPedicure, price: "750₴", icon: Heart },
+        { name: translations.uk.hygienicPedicure, price: "550₴", icon: Sparkles },
       ],
     },
     {
       id: 3,
-      category: "ДОДАТКОВІ ПОСЛУГИ",
+      category: translations.uk.additionalServices,
       services: [
-        { name: "Ремонт нігтя", price: "20-60₴", icon: Scissors },
-        { name: "Дизайн - Слайдери/стемпінг/абстракція", price: "до 100₴", icon: Star },
-        { name: "Складні дизайни", price: "до 150₴", icon: Sparkles },
-        { name: "Френч", price: "100₴", icon: Heart },
+        { name: translations.uk.nailRepair, price: "20-60₴", icon: Scissors },
+        { name: translations.uk.designBasic, price: translations.uk.upTo100, icon: Star },
+        { name: translations.uk.complexDesigns, price: translations.uk.upTo150, icon: Sparkles },
+        { name: translations.uk.frenchManicure, price: "100₴", icon: Heart },
       ],
     },
   ];
@@ -75,10 +76,10 @@ const ServicesCarousel = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1c0038] mb-4">
-            Our Services
+            {translations.uk.ourServices}
           </h2>
           <p className="text-xl text-[#CC66DA] max-w-3xl mx-auto">
-            Premium nail care services crafted with precision and luxury in mind
+            {translations.uk.servicesDescription}
           </p>
         </div>
 
@@ -92,9 +93,9 @@ const ServicesCarousel = () => {
               key={category.id}
               className={`flex-shrink-0 w-80 lg:w-96 group cursor-pointer transition-all duration-700 ${
                 activeIndex === categoryIndex
-                  ? "scale-105 transform -translate-y-2"
+                  ? " "
                   : activeIndex !== null
-                  ? "scale-95 opacity-70"
+                  ? " "
                   : ""
               }`}
               onMouseEnter={() => handleItemHover(categoryIndex)}
@@ -162,7 +163,7 @@ const ServicesCarousel = () => {
             <div className="flex items-center gap-4 mb-6">
               <img
                 src="/girl.jpg"
-                alt="Profile"
+                alt={translations.uk.masterName}
                 className="w-16 h-16 rounded-full object-cover border-2 border-[#CC66DA]"
               />
               <div>
@@ -177,9 +178,7 @@ const ServicesCarousel = () => {
 
             {/* Detailed Info */}
             <p className="text-gray-700 leading-relaxed">
-              This is a premium <span className="font-semibold">{selectedService.name}</span> service
-              designed for nail health and beauty. Our experts ensure the best care
-              with top-quality products and techniques.
+              {translations.uk.serviceModalDescription}
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { translations } from '../data/translations';
 interface BookNowSectionProps {
   bookingPageUrl?: string; // default /book
   label?: string;           // default "Book Now"
@@ -8,7 +8,7 @@ interface BookNowSectionProps {
 
 const BookNowSection: React.FC<BookNowSectionProps> = ({
   bookingPageUrl = "/book",
-  label = "Book Now",
+  label = translations.uk.bookNow,
   backgroundImage,
 }) => {
   return (
@@ -23,10 +23,10 @@ const BookNowSection: React.FC<BookNowSectionProps> = ({
     >
       <div className="bg-white/30 backdrop-blur-md p-8 rounded-3xl text-center max-w-md">
         <h2 className="text-3xl md:text-4xl font-bold text-[#1c0038] mb-4">
-          Ready to Book Your Appointment?
+          {translations.uk.readyToBook}
         </h2>
         <p className="text-[#1c0038]/80 mb-6">
-          Secure your slot with our premium nail services today.
+          {translations.uk.bookNowDescription}
         </p>
         <a
           href={bookingPageUrl}

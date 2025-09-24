@@ -7,7 +7,6 @@ import TimeSlots from "./TimeSlots";
 import GalleryCarousel from "./GalleryCarousel ";
 
 const Home = () => {
-  const [userId, setUserId] = useState<string>("");
   const [loginResponseMessage, setLoginResponseMessage] = useState<string>("");
 
   useEffect(() => {
@@ -19,8 +18,7 @@ const Home = () => {
       storedId = "user-" + Math.random().toString(36).substr(2, 9);
       localStorage.setItem("userId", storedId);
     }
-
-    setUserId(storedId);
+    
 
     // Check if admin is logged in via sessionStorage
     const storedMessage = sessionStorage.getItem("loginResponseMessage");
@@ -38,10 +36,7 @@ const Home = () => {
       <TimeSlots />
       <BookNowSection bookingPageUrl="/book" backgroundImage="/nail2.jpg" />
 
-      {/* Debug/optional: show ID */}
-      <div className="p-4 text-sm text-gray-600">
-        Session ID: <span className="font-mono">{userId}</span>
-      </div>
+ 
     </section>
   );
 };

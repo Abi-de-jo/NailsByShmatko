@@ -239,7 +239,7 @@ const BookingPage: React.FC = () => {
                   {formData.selectedServices.map((service, index) => (
                     <div key={index} className="flex items-center justify-between p-2 sm:p-3 bg-[#e7e4ff]/30 rounded-lg sm:rounded-xl">
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-[#1c0038] text-xs sm:text-sm truncate">{service.nameEn}</p>
+                        <p className="font-medium text-[#1c0038] text-xs sm:text-sm truncate">{service.name}</p>
                         <p className="text-[#CC66DA] text-xs font-semibold">{service.price}</p>
                       </div>
                       <button
