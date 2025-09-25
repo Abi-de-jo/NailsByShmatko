@@ -98,12 +98,38 @@ const BookingPage: React.FC = () => {
     }));
   };
 
+  const parsePrice = (price: string): number => {
+    if (!price) return 0;
+  
+    // Remove spaces
+    const clean = price.replace(/\s/g, "");
+  
+    // Case 1: Range "1200-1400₴"
+    if (clean.includes("-")) {
+      const parts = clean.split("-");
+      const nums = parts.map(p => parseInt(p.replace(/[^\d]/g, ""))).filter(Boolean);
+      if (nums.length > 0) {
+        return nums[0]; // take MIN, or use Math.max / average
+      }
+    }
+  
+    // Case 2: "до 100₴" or "до150₴/10₴шт"
+    if (clean.includes("до")) {
+      const match = clean.match(/\d+/);
+      return match ? parseInt(match[0]) : 0;
+    }
+  
+    // Case 3: Single price like "650₴"
+    const num = parseInt(clean.replace(/[^\d]/g, ""));
+    return isNaN(num) ? 0 : num;
+  };
+  
   const calculateTotal = () => {
     return formData.selectedServices.reduce((total, service) => {
-      const price = parseInt(service.price.replace(/[^\d]/g, '')) || 0;
-      return total + price;
+      return total + parsePrice(service.price);
     }, 0);
   };
+  
 
   const serviceIcons = [Scissors, Sparkles, Heart, Star];
   const getServiceIcon = (index: number) => serviceIcons[index % serviceIcons.length];
