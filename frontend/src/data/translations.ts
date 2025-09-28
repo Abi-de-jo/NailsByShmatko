@@ -60,9 +60,7 @@ export const translations = {
 
     // Gallery
     galleryTitle: "Our Gallery",
-    galleryDescription: "Explore our nail art creations and transformations",
-    galleryCarouselDescription: "Explore our latest nail and foot art creations and transformations",
-    galleryImageAlt: "Nail art design",
+     galleryImageAlt: "Nail art design",
     all: "All",
     classic: "Classic",
     extensions: "Extensions",
