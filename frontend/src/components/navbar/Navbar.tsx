@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { translations } from '../../data/translations';
+import { NavLink } from "react-router-dom";
  
 const Navbar: React.FC = () => {
   const navLinks = [
@@ -15,14 +16,21 @@ const Navbar: React.FC = () => {
         <div className="flex justify-center items-center space-x-4 md:space-x-8 lg:space-x-12 flex-wrap gap-2 md:gap-0">
           {/* Navigation Links - Responsive */}
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className="text-[#1c0038] hover:text-[#9929EA] font-medium md:font-semibold text-sm md:text-lg transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#CC66DA] after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full px-2 py-1 md:px-0 md:py-0"
-            >
-              {link.name}
-            </Link>
-          ))}
+  <NavLink
+    key={link.name}
+    to={link.href}
+    end
+    className={({ isActive }) =>
+      `px-2 py-1 md:px-0 md:py-0 font-medium md:font-semibold text-sm md:text-lg transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:transition-all after:duration-300
+       ${isActive 
+          ? "text-[#9929EA] after:w-full after:bg-[#CC66DA]" 
+          : "text-[#1c0038] hover:text-[#9929EA] hover:after:w-full after:bg-[#CC66DA]"
+       }`
+    }
+  >
+    {link.name}
+  </NavLink>
+))}
           
           <Link
             to="/book"

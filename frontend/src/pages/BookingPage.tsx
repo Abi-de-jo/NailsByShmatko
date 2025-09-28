@@ -26,7 +26,7 @@ const BookingPage: React.FC = () => {
   });
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false); // ✅ loading state
+  const [loading, setLoading] = useState(false);  
 
 
   const handleServiceToggle = (service: any) => {

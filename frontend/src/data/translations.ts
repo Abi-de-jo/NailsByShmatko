@@ -190,11 +190,11 @@ export const translations = {
     profile: "Профіль",
 
     // Business
-    businessName: "Нігті від Шматко",
+    businessName: "нігті by Shmatko",
 
     // Booking Page
     bookYourAppointment: "Забронювати Запис",
-    selectServicesDescription: "Оберіть послуги, виберіть час і дозвольте нам створити щось прекрасне для вас",
+    selectServicesDescription: "Оберіть послуги, виберіть час і дозвольте  створити щось прекрасне для вас",
     selectedServices: "Обрані Послуги",
     noServicesSelected: "Ще не обрано жодної послуги",
     total: "Всього",
@@ -241,10 +241,8 @@ export const translations = {
     frenchManicure: "Френч",
 
     // Gallery
-    galleryTitle: "Наша Галерея",
-    galleryDescription: "Ознайомтесь з нашими роботами та перетвореннями нігтів",
-    galleryCarouselDescription: "Ознайомтесь з нашими останніми роботами та перетвореннями нігтів",
-    galleryImageAlt: "Дизайн нігтів",
+    galleryTitle: " Наша Галерея",
+     galleryImageAlt: "Дизайн нігтів",
     all: "Всі",
     classic: "Класика",
     extensions: "Нарощування",
@@ -265,7 +263,7 @@ export const translations = {
     floralArt: "Квітковий арт",
 
     // Services Section
-    ourServices: "Наші Послуги",
+    ourServices: "Послуги",
     servicesDescription: "Преміальний догляд за нігтями, створений з точністю та розкошью",
     moreDetails: "більше деталей",
     clickForDetails: "Натисніть для деталей",
@@ -293,7 +291,7 @@ export const translations = {
     // Owner Section
     masterTitle: "Майстер нігтьового сервісу",
     masterName: "Шматко",
-    masterDescription: "Майстер нігтьового сервісу з понад 5-річним досвідом створення редакційних розкішних дизайнів нігтів. Спеціалізація на індивідуальному нейл-арті, гелевих нарощуваннях та преміальному догляду за нігтями.",
+    masterDescription: "Майстер нігтьового сервісу з понад 5-річним досвідом створення редакційних розкішних дизайнів нігтів. Спеціалізація на індивідуальному нейл-арті, гелевих нарощуваннях та преміальному догляду.",
     experienceBadge: "5+ років досвіду",
     customNailArtBadge: "Індивідуальний нейл-арт",
     premiumTreatmentsBadge: "Преміальний догляд",

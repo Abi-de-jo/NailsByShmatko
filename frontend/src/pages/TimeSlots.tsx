@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { translations } from '../data/translations';
+import { translations } from "../data/translations";
+
 interface TimeSlotsProps {
   startHour?: number; // default 8 (8 AM)
-  endHour?: number;   // default 20 (8 PM)
-  gapHours?: number;  // default 2 hours
+  endHour?: number; // default 20 (8 PM)
+  gapHours?: number; // default 2 hours
   onSelect?: (time: string) => void;
   serviceDuration?: string; // e.g., "30 min", "1 hour"
 }
@@ -13,11 +14,15 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
   endHour = 20,
   gapHours = 2,
   onSelect,
-  serviceDuration = translations.uk.oneHour
+  serviceDuration = translations.uk.oneHour,
 }) => {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [currentHour, setCurrentHour] = useState<number>(new Date().getHours());
-  const [currentMinute, setCurrentMinute] = useState<number>(new Date().getMinutes());
+  const [currentHour, setCurrentHour] = useState<number>(
+    new Date().getHours()
+  );
+  const [currentMinute, setCurrentMinute] = useState<number>(
+    new Date().getMinutes()
+  );
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -31,12 +36,12 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
   }, []);
 
   const formatDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric' 
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
     };
-    return date.toLocaleDateString('uk-UA', options);
+    return date.toLocaleDateString("uk-UA", options);
   };
 
   const generateSlots = () => {
@@ -49,10 +54,10 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
     return slots;
   };
 
+  // 24-hour format
   const formatHour = (hour24: number) => {
-    const period = hour24 >= 12 ? translations.uk.pm : translations.uk.am;
-    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-    return `${hour12}:00 ${period}`;
+    const hh = String(hour24).padStart(2, "0");
+    return `${hh}:00`;
   };
 
   const isSlotPast = (slotHour: number) => {
@@ -63,7 +68,6 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
 
   const handleSelect = (slot: string, hour: number) => {
     if (isSlotPast(hour)) return;
-    
     setSelectedSlot(slot);
     onSelect?.(slot);
   };
@@ -71,28 +75,38 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
   const slots = generateSlots();
 
   return (
-    <div className="max-w-4xl mx-auto p-4 mb-3">
-      {/* Compact header with date and service info */}
+    <div className="max-w-4xl mx-auto p-4 mb-6">
+      {/* Header */}
       <div className="flex justify-between items-center mb-6 p-4 bg-[#e7e4ff] rounded-2xl">
         <div>
-          <h2 className="text-2xl font-bold text-[#1c0038]">{translations.uk.pickTime}</h2>
+          <h2 className="text-2xl font-bold text-[#1c0038]">
+            {translations.uk.pickTime}
+          </h2>
           <p className="text-[#1c0038]/80 text-sm mt-1">
-            {translations.uk.serviceDuration}: <span className="font-semibold text-[#9929EA]">{serviceDuration}</span>
+            {translations.uk.serviceDuration}:{" "}
+            <span className="font-semibold text-[#9929EA]">
+              {serviceDuration}
+            </span>
           </p>
         </div>
         <div className="text-right">
-          <div className="text-lg font-bold text-[#1c0038]">{formatDate(currentDate)}</div>
-          <div className="text-sm text-[#1c0038]/70">{translations.uk.today}</div>
+          <div className="text-lg font-bold text-[#1c0038]">
+            {formatDate(currentDate)}
+          </div>
+          <div className="text-sm text-[#1c0038]/70">
+            {translations.uk.today}
+          </div>
         </div>
       </div>
 
-      {/* Time slots grid - more compact */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      {/* Time Slots */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
         {slots.map((slot, idx) => {
           const slotHour = startHour + idx * gapHours;
           const isPast = isSlotPast(slotHour);
           const isSelected = slot === selectedSlot;
-          const isCurrentSlot = currentHour >= slotHour && currentHour < slotHour + gapHours;
+          const isCurrentSlot =
+            currentHour >= slotHour && currentHour < slotHour + gapHours;
 
           return (
             <button
@@ -139,6 +153,41 @@ const TimeSlots: React.FC<TimeSlotsProps> = ({
             </button>
           );
         })}
+      </div>
+
+      {/* Contact Section */}
+      <div className="bg-white border border-[#faeb92] rounded-2xl shadow-md p-6 text-center">
+        <h3 className="text-xl font-bold text-[#1c0038] mb-4">
+          {translations.uk.contact}
+        </h3>
+        <div className="space-y-2 text-[#1c0038]">
+          <p>
+            {translations.uk.contactNumber}: 
+           <a href="tel:+380634024503" className="font-semibold">+380634024503</a>
+          </p>
+          <p>
+             Instagram:{" "}
+            <a
+              href="https://instagram.com/nails_shmatko"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#9929EA] hover:text-[#cc66da] font-medium"
+            >
+              @nails_shmatko
+            </a>
+          </p>
+          <p>
+            Threads:{" "}
+            <a
+              href="https://www.threads.com/@nails_shmatko"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#9929EA] hover:text-[#cc66da] font-medium"
+            >
+              @nails_shmatko
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

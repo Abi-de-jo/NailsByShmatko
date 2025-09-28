@@ -28,8 +28,7 @@ const OwnerSection: React.FC<OwnerSectionProps> = ({ loginResponseMessage }) => 
       <nav className="relative z-20 px-6 py-6 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-[#1c0038] to-[#9929ea] bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer">
-            {translations.uk.businessName}
-          </div>
+           </div>
           <Link to="/profile" className="bg-[#1c0038] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-[#9929ea] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#9929ea]/25">
             {translations.uk.profile}
           </Link>
