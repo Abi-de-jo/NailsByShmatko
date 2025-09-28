@@ -239,8 +239,8 @@ export const translations = {
     frenchManicure: "Френч",
 
     // Gallery
-    galleryTitle: " Наша Галерея",
-     galleryImageAlt: "Дизайн нігтів",
+    galleryTitle: "Галерея",
+     galleryImageAlt: "Д  изайн нігтів",
     all: "Всі",
     galleryDescription: "Ознайомтесь з нашими роботами та перетвореннями нігтів",
     galleryCarouselDescription: "Ознайомтесь з нашими останніми роботами та перетвореннями нігтів",
