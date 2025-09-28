@@ -50,9 +50,7 @@ const GalleryCarousel = () => {
         <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#1c0038] mb-4">
           {translations.uk.galleryTitle}
         </h2>
-        <p className="text-lg text-[#CC66DA] max-w-2xl mx-auto">
-          {translations.uk.galleryCarouselDescription}
-        </p>
+ 
       </div>
 
       <div

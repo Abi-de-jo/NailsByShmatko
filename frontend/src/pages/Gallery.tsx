@@ -43,9 +43,7 @@ const Gallery: React.FC = () => {
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-[#1c0038] mb-2">{translations.uk.galleryTitle}</h1>
-        <p className="text-[#CC66DA] text-lg md:text-xl max-w-2xl mx-auto">
-          {translations.uk.galleryDescription}
-        </p>
+   
       </div>
 
       {/* Categories Filter */}

@@ -242,6 +242,9 @@ export const translations = {
     galleryTitle: " Наша Галерея",
      galleryImageAlt: "Дизайн нігтів",
     all: "Всі",
+    galleryDescription: "Ознайомтесь з нашими роботами та перетвореннями нігтів",
+    galleryCarouselDescription: "Ознайомтесь з нашими останніми роботами та перетвореннями нігтів",
+   
     classic: "Класика",
     extensions: "Нарощування",
     artistic: "Арт",
